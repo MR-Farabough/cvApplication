@@ -7,7 +7,7 @@ interface Props {
 
 class App extends Component {
 	constructor({ fillerProp }: Props) {
-		super({ fillerProp });
+		super(fillerProp);
 	}
 
 	render() {
