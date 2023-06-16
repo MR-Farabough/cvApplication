@@ -3,12 +3,14 @@ import '../styles/Card.css';
 
 interface Props {
 	children: ReactNode;
+	color: string;
 }
 
 export class Card extends Component<Props> {
 	render() {
-		const { children } = this.props;
-		return <div className="card-body">{children}</div>;
+		const { children, color } = this.props;
+		console.log(color);
+		return <div className={'card-body' + ' ' + color}>{children}</div>;
 	}
 }
 
