@@ -9,7 +9,6 @@ interface Props {
 export class Card extends Component<Props> {
 	render() {
 		const { children, color } = this.props;
-		console.log(color);
 		return <div className={'card-body' + ' ' + color}>{children}</div>;
 	}
 }
