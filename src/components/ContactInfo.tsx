@@ -18,8 +18,8 @@ class ContactInfo extends React.Component {
 	render() {
 		return (
 			<>
-				<h3>Contact Info</h3>
-				<div className="name-section">
+				<h3 className="header">Contact Info</h3>
+				<div className="body-section">
 					<div>
 						<p>First Name</p>
 						<input type="text" placeholder="First Name" />
@@ -29,7 +29,7 @@ class ContactInfo extends React.Component {
 						<input type="text" placeholder="Last Name" />
 					</div>
 				</div>
-				<div className="contact-section">
+				<div className="body-section">
 					<div>
 						<p>Email</p>
 						<input type="text" placeholder="Email Address" />
