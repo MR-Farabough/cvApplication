@@ -1,10 +1,19 @@
 .card-body {
   padding: 10px;
   border-radius: 15px;
+  min-height: 50px;
   border: 1px solid black;
   display: flex;
   overflow: auto;
   margin: 5px;
+}
+
+button {
+  border-radius: 10px;
+  background-color: #F4FDAF;
+  border: 2px solid black;
+  height: fit-content;
+  cursor: pointer;
 }
 
 input {
@@ -14,6 +23,14 @@ input {
 
 p {
   color: white;
+}
+
+.deactive {
+  display: none;
+}
+
+.active {
+  display: flex;
 }
 
 .one {
