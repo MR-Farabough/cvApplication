@@ -1,4 +1,5 @@
 import { Component, ReactNode } from 'react';
+import '../styles/Card.css';
 
 interface Props {
 	children: ReactNode;
@@ -7,7 +8,7 @@ interface Props {
 export class Card extends Component<Props> {
 	render() {
 		const { children } = this.props;
-		return <div>{children}</div>;
+		return <div className="card-body">{children}</div>;
 	}
 }
 
