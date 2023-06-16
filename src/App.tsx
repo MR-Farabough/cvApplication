@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import './styles/App.css';
 
 interface Props {
 	fillerProp: string;
