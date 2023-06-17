@@ -42,8 +42,12 @@ export class Education extends Component {
 						<input type="text" placeholder="Major" />
 					</div>
 					<div>
-						<p>Acomplishments</p>
-						<input type="text" placeholder="Seperate using a ' , '" />
+						<p>Accomplishments</p>
+						<input
+							type="text"
+							className="long-input"
+							placeholder="Seperate using a ' , '"
+						/>
 					</div>
 				</div>
 			</>
