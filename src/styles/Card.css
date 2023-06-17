@@ -8,6 +8,11 @@
   margin: 5px;
 }
 
+fieldset {
+  color: white;
+  border: 1px solid yellow;
+}
+
 button {
   border-radius: 10px;
   background-color: #F4FDAF;
@@ -15,14 +20,30 @@ button {
   height: fit-content;
   cursor: pointer;
   position: relative;
-  right: 100px;
+  width: 150px;
+  padding: 10px;
   top: 25px;
+}
+
+.delete-button {
+  width: 25px;
+  background-color: rgb(255, 86, 86);
+  font-size: 20px;
+  text-align: center;
+  padding: 5px;
 }
 
 input {
   border-radius: 5px;
   height: fit-content;
   padding: 5px;
+}
+
+.long-input {
+  border-radius: 5px;
+  height: fit-content;
+  padding: 5px;
+  width: 300px;
 }
 
 p {
