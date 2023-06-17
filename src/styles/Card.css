@@ -70,6 +70,10 @@ div.active {
   background-color: #4a552b;
 }
 
+.four {
+  background-color: #725752;
+}
+
 .header {
   position: relative;
   bottom: 20px;
