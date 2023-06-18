@@ -24,15 +24,23 @@ export class Work extends Component {
 		const responsibilies: HTMLInputElement | null = document.querySelector(
 			'.responsibilites-input'
 		);
-		if (company && job && responsibilies) {
+		const startDate: HTMLInputElement | null =
+			document.querySelector('.start-date-input');
+		const endDate: HTMLInputElement | null =
+			document.querySelector('.end-date-input');
+		if (company && job && responsibilies && startDate && endDate) {
 			if (
 				company.value.length > 3 &&
 				job.value.length > 3 &&
-				responsibilies.value.length > 3
+				responsibilies.value.length > 3 &&
+				startDate.value.length > 5 &&
+				endDate.value.length > 5
 			) {
 				(company.style.border = '1px solid green'),
 					(job.style.border = '1px solid green'),
-					(responsibilies.style.border = '1px solid green');
+					(responsibilies.style.border = '1px solid green'),
+					(startDate.style.border = '1px solid green'),
+					(endDate.style.border = '1px solid green');
 				const newJobArray = [];
 				this.state.work.forEach((prevJob) => {
 					newJobArray.push(prevJob);
@@ -41,6 +49,8 @@ export class Work extends Component {
 					companyName: company.value,
 					jobTitle: job.value,
 					responsibilies: responsibilies.value,
+					startDate: startDate.value,
+					endDate: endDate.value,
 				});
 				this.setState({
 					count: this.state.count + 1,
@@ -48,12 +58,17 @@ export class Work extends Component {
 					work: newJobArray,
 				});
 				this.handleClose();
+				company.value = '';
+				job.value = '';
+				responsibilies.value = '';
 				console.log(this.state);
 			} else
 				[
 					(company.style.border = '1px solid red'),
 					(job.style.border = '1px solid red'),
 					(responsibilies.style.border = '1px solid red'),
+					(startDate.style.border = '1px solid red'),
+					(endDate.style.border = '1px solid red'),
 				];
 		}
 	};
@@ -97,11 +112,11 @@ export class Work extends Component {
 							<div className="date-input">
 								<div>
 									<h5>Start</h5>
-									<input type="date" />
+									<input className="start-date-input" type="date" />
 								</div>
 								<div>
 									<h5>End</h5>
-									<input type="date" />
+									<input className="end-date-input" type="date" />
 								</div>
 							</div>
 						</div>
