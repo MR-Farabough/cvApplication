@@ -1,7 +1,21 @@
 import { Component } from 'react';
 import '../styles/Work.css';
 
-export class Work extends Component {
+type WorkExperience = {
+	companyName: string;
+	jobTitle: string;
+	responsibilities: string;
+	startDate: string;
+	endDate: string;
+};
+
+interface State {
+	count: number;
+	renderReady: boolean;
+	work: WorkExperience[];
+}
+
+export class Work extends Component<{}, State> {
 	state = {
 		count: 0,
 		renderReady: false,
@@ -36,49 +50,71 @@ export class Work extends Component {
 				startDate.value.length > 5 &&
 				endDate.value.length > 5
 			) {
-				(company.style.border = '1px solid green'),
-					(job.style.border = '1px solid green'),
-					(responsibilies.style.border = '1px solid green'),
-					(startDate.style.border = '1px solid green'),
-					(endDate.style.border = '1px solid green');
-				const newJobArray = [];
-				this.state.work.forEach((prevJob) => {
-					newJobArray.push(prevJob);
-				});
+				company.style.border = '1px solid green';
+				job.style.border = '1px solid green';
+				responsibilies.style.border = '1px solid green';
+				startDate.style.border = '1px solid green';
+				endDate.style.border = '1px solid green';
+
+				const newJobArray: WorkExperience[] = [...this.state.work];
 				newJobArray.push({
 					companyName: company.value,
 					jobTitle: job.value,
-					responsibilies: responsibilies.value,
+					responsibilities: responsibilies.value,
 					startDate: startDate.value,
 					endDate: endDate.value,
 				});
+
 				this.setState({
 					count: this.state.count + 1,
 					renderReady: true,
 					work: newJobArray,
 				});
+
 				this.handleClose();
 				company.value = '';
 				job.value = '';
 				responsibilies.value = '';
 				console.log(this.state);
-			} else
-				[
-					(company.style.border = '1px solid red'),
-					(job.style.border = '1px solid red'),
-					(responsibilies.style.border = '1px solid red'),
-					(startDate.style.border = '1px solid red'),
-					(endDate.style.border = '1px solid red'),
-				];
+			} else {
+				company.style.border = '1px solid red';
+				job.style.border = '1px solid red';
+				responsibilies.style.border = '1px solid red';
+				startDate.style.border = '1px solid red';
+				endDate.style.border = '1px solid red';
+			}
 		}
 	};
+	handleDelete = (index: number) => {
+		const newWorkArray: WorkExperience[] = [...this.state.work];
+		newWorkArray.splice(index, 1);
+		this.setState({
+			work: newWorkArray,
+		});
+	};
+	handleWorkExperience() {
+		return this.state.work.map((prevJob: WorkExperience, index: number) => (
+			<div className="work-card" key={index}>
+				<h2 className="work-title">Company Name: {prevJob.companyName}</h2>
+				<h3 className="work-position">Job Title: {prevJob.jobTitle}</h3>
+				<div className="work-tasks">
+					Responsibilities: {prevJob.responsibilities}
+				</div>
+				<h4 className="work-dates">
+					Start - {prevJob.startDate} || End - {prevJob.endDate}
+				</h4>
+				<button onClick={() => this.handleDelete(index)}>Delete</button>
+			</div>
+		));
+	}
+
 	render() {
 		return (
 			<>
 				<div className="backdrop"></div>
 				<h3 className="header">Work</h3>
 				<div>
-					<button onClick={this.handleOpen}>Add Work Expierence</button>
+					<button onClick={this.handleOpen}>Add Work Experience</button>
 				</div>
 				<div className="body-section">
 					<div className="modal modal-deactive">
@@ -100,10 +136,10 @@ export class Work extends Component {
 							/>
 						</div>
 						<div>
-							<h3>Resonsibilities</h3>
+							<h3>Responsibilities</h3>
 							<input
 								type="text"
-								placeholder="Seperate with a ' , '"
+								placeholder="Separate with a comma"
 								className="responsibilites-input"
 							/>
 						</div>
@@ -122,13 +158,7 @@ export class Work extends Component {
 						</div>
 						<button onClick={this.handleSubmit}>Submit</button>
 					</div>
-					{this.state.renderReady && (
-						<div>
-							<div>{JSON.stringify(this.state.work)}</div>
-							<div>{JSON.stringify(this.state.work)}</div>
-							<div>{JSON.stringify(this.state.work)}</div>
-						</div>
-					)}
+					{this.state.renderReady && this.handleWorkExperience()}
 				</div>
 			</>
 		);
