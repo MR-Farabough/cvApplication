@@ -22,21 +22,29 @@ class ContactInfo extends React.Component {
 				<div className="body-section">
 					<div>
 						<p>First Name</p>
-						<input type="text" placeholder="First Name" />
+						<input
+							className="first-name"
+							type="text"
+							placeholder="First Name"
+						/>
 					</div>
 					<div>
 						<p>Last Name</p>
-						<input type="text" placeholder="Last Name" />
+						<input className="last-name" type="text" placeholder="Last Name" />
 					</div>
 				</div>
 				<div className="body-section">
 					<div>
 						<p>Email</p>
-						<input type="text" placeholder="Email Address" />
+						<input className="email" type="text" placeholder="Email Address" />
 					</div>
 					<div>
 						<p>Phone</p>
-						<input type="text" placeholder="Phone Number" />
+						<input
+							className="phone-number"
+							type="text"
+							placeholder="Phone Number"
+						/>
 					</div>
 				</div>
 			</>

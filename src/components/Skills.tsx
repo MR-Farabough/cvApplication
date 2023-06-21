@@ -67,7 +67,7 @@ export class Skills extends Component {
 							return (
 								<div className={`a${index}`} key={index}>
 									<fieldset>
-										{task}
+										<div className="task">{task}</div>
 										<button
 											onClick={() => this.handleDelete(`${index}`)}
 											className="delete-button"

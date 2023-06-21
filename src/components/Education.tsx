@@ -35,17 +35,21 @@ export class Education extends Component {
 				<div className={'body-section deactive'}>
 					<div>
 						<p>University Name</p>
-						<input type="text" placeholder="University Name" />
+						<input
+							className="university"
+							type="text"
+							placeholder="University Name"
+						/>
 					</div>
 					<div>
 						<p>Major</p>
-						<input type="text" placeholder="Major" />
+						<input className="major" type="text" placeholder="Major" />
 					</div>
 					<div>
 						<p>Accomplishments</p>
 						<input
 							type="text"
-							className="long-input"
+							className="accomplishments long-input"
 							placeholder="Seperate using a ' , '"
 						/>
 					</div>
