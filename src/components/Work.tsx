@@ -95,11 +95,9 @@ export class Work extends Component<{}, State> {
 	handleWorkExperience() {
 		return this.state.work.map((prevJob: WorkExperience, index: number) => (
 			<div className="work-card" key={index}>
-				<h2 className="work-title">Company Name: {prevJob.companyName}</h2>
-				<h3 className="work-position">Job Title: {prevJob.jobTitle}</h3>
-				<div className="work-tasks">
-					Responsibilities: {prevJob.responsibilities}
-				</div>
+				<h2 className="work-title">{prevJob.companyName}</h2>
+				<h3 className="work-position">{prevJob.jobTitle}</h3>
+				<div className="work-tasks">{prevJob.responsibilities}</div>
 				<h4 className="work-dates">
 					Start - {prevJob.startDate} || End - {prevJob.endDate}
 				</h4>
