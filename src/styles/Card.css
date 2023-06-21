@@ -81,6 +81,10 @@ div.active {
   background-color: #56423e;
 }
 
+.six {
+  background-color: white;
+}
+
 .header {
   position: relative;
   bottom: 20px;
