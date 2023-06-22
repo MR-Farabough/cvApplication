@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import './styles/App.css';
 import ContactInfo from './components/ContactInfo';
 import Card from './components/Card';
@@ -6,32 +6,24 @@ import Education from './components/Education';
 import Skills from './components/Skills';
 import Work from './components/Work';
 
-interface Props {
-	fillerProp: string;
-}
-
-class App extends Component {
-	constructor({ fillerProp }: Props) {
-		super(fillerProp);
-	}
-
-	state = {
+const App = () => {
+	let [state, setState] = useState({
 		renderReady: false,
-		firstName: null,
-		lastName: undefined,
-		email: undefined,
-		phone: undefined,
-		university: undefined,
-		major: undefined,
-		accomplishments: undefined,
-		skills: undefined,
-		company: undefined,
-		titles: undefined,
-		responsibilities: undefined,
-		dates: undefined,
-	};
+		firstName: '',
+		lastName: '',
+		email: '',
+		phone: '',
+		university: '',
+		major: '',
+		accomplishments: '',
+		skills: '',
+		company: '',
+		titles: '',
+		responsibilities: '',
+		dates: '',
+	});
 
-	handleSubmit = () => {
+	const handleSubmit = () => {
 		const firstName: HTMLInputElement | null =
 			document.querySelector('.first-name');
 		const lastName: HTMLInputElement | null =
@@ -74,101 +66,100 @@ class App extends Component {
 			const dateText = date.textContent + ' ' || '';
 			datesArr.push(dateText);
 		});
-		this.setState({
+		const newState = {
 			renderReady: true,
-			firstName: firstName?.value,
-			lastName: lastName?.value,
-			email: email?.value,
-			phone: phone?.value,
-			university: university?.value,
-			major: major?.value,
-			accomplishments: accomplishments?.value,
-			skills: skillsArr,
-			company: companyArr,
-			titles: titleArr,
-			responsibilities: responsibilitiesArr,
-			dates: datesArr,
-		});
+			firstName: (firstName && firstName.value) || state.firstName,
+			lastName: (lastName && lastName.value) || state.lastName,
+			email: (email && email.value) || state.email,
+			phone: (phone && phone.value) || state.phone,
+			university: (university && university.value) || state.university,
+			major: (major && major.value) || state.major,
+			accomplishments:
+				(accomplishments && accomplishments.value) || state.accomplishments,
+			skills: skillsArr.join(' ') || state.skills,
+			company: companyArr.join(' ') || state.company,
+			titles: titleArr.join(' ') || state.titles,
+			responsibilities: responsibilitiesArr.join(' ') || state.responsibilities,
+			dates: datesArr.join(' ') || state.dates,
+		};
+		setState(newState);
 	};
-
-	render() {
-		return (
-			<>
-				<Card color="one">
-					<ContactInfo />
-				</Card>
-				<Card color="two">
-					<Education />
-				</Card>
-				<Card color="three">
-					<Skills />
-				</Card>
-				<Card color="four">
-					<Work />
-				</Card>
-				<Card color="five">
-					<button onClick={this.handleSubmit} className="submit-button">
-						Submit
-					</button>
-				</Card>
-				{this.state.renderReady && (
-					<Card color="six">
-						<div className="container">
-							<div className="Name">
-								{this.state.firstName} {this.state.lastName}
+	return (
+		<>
+			<Card color="one">
+				<ContactInfo />
+			</Card>
+			<Card color="two">
+				<Education />
+			</Card>
+			<Card color="three">
+				<Skills />
+			</Card>
+			<Card color="four">
+				<Work />
+			</Card>
+			<Card color="five">
+				<button onClick={handleSubmit} className="submit-button">
+					Submit
+				</button>
+			</Card>
+			{state.renderReady && (
+				<Card color="six">
+					<div className="container">
+						<div className="Name">
+							{state.firstName} {state.lastName}
+						</div>
+						<div className="Contact">
+							<div>
+								<h3>Email </h3>
+								<p>{state.email}</p>
 							</div>
-							<div className="Contact">
-								<div>
-									<h3>Email </h3>
-									<p>{this.state.email}</p>
-								</div>
-								<div>
-									<h3>Phone </h3>
-									<p>{this.state.phone}</p>
-								</div>
-							</div>
-							<div className="Education">
-								<div>
-									<h3>University </h3>
-									<p>{this.state.university}</p>
-								</div>
-								<div>
-									<h3>Major </h3>
-									<p>{this.state.major}</p>
-								</div>
-								<div>
-									<h3>Accomplishments </h3>
-									<p> {this.state.accomplishments}</p>
-								</div>
-							</div>
-							<div className="Skills">
-								<h3>Skills &gt; </h3>
-								<p>{this.state.skills}</p>
-							</div>
-							<div className="Work">
-								<div>
-									<h3>Company </h3>
-									<p>{this.state.company}</p>
-								</div>
-								<div>
-									<h3>Job Title </h3>
-									<p>{this.state.titles}</p>
-								</div>
-								<div>
-									<h3>Responsibilities </h3>
-									<p>{this.state.responsibilities}</p>
-								</div>
-								<div>
-									<h3>Time of Employment </h3>
-									<p>{this.state.dates}</p>
-								</div>
+							<div>
+								<h3>Phone </h3>
+								<p>{state.phone}</p>
 							</div>
 						</div>
-					</Card>
-				)}
-			</>
-		);
-	}
-}
+						<div className="Education">
+							<div>
+								<h3>University </h3>
+								<p>{state.university}</p>
+							</div>
+							<div>
+								<h3>Major </h3>
+								<p>{state.major}</p>
+							</div>
+							<div>
+								<h3>Accomplishments </h3>
+								<p> {state.accomplishments}</p>
+							</div>
+						</div>
+						<div className="Skills">
+							<h3>Skills &gt; </h3>
+							<p>{state.skills}</p>
+						</div>
+						<div className="Work">
+							<div>
+								<h3>Company </h3>
+								<p>{state.company}</p>
+							</div>
+							<div>
+								<h3>Job Title </h3>
+								<p>{state.titles}</p>
+							</div>
+							<div>
+								<h3>Responsibilities </h3>
+								<p>{state.responsibilities}</p>
+							</div>
+							<div>
+								<h3>Time of Employment </h3>
+								<p>{state.dates}</p>
+							</div>
+						</div>
+					</div>
+				</Card>
+			)}
+		</>
+	);
+};
 
 export default App;
